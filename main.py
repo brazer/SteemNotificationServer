@@ -2,6 +2,7 @@ import threading
 
 from steem.blockchain import Blockchain
 
+from messaging import _send_fcm_message, _build_common_message
 from model import Vote, Comment, Follow
 
 
@@ -17,8 +18,8 @@ def parse_next_block(block):
                 process_custom_json(operation)
             elif name == "comment":
                 process_comment(operation)
-            #else:
-             #   print(operation)
+            else:
+                print(operation)
 
 
 # ['vote', {'voter': 'onelovecuration', 'author': 'enjoyinglife', 'permlink': 'ixtf4g8l', 'weight': 2000}]
@@ -62,4 +63,5 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    #run()
+    _send_fcm_message(_build_common_message())
